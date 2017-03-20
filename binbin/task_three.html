@@ -1,0 +1,102 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+  </head>
+<body>
+
+  <ul id="source">
+    <li>北京空气质量：<b>90</b></li>
+    <li>上海空气质量：<b>70</b></li>
+    <li>天津空气质量：<b>80</b></li>
+    <li>广州空气质量：<b>50</b></li>
+    <li>深圳空气质量：<b>40</b></li>
+    <li>福州空气质量：<b>32</b></li>
+    <li>成都空气质量：<b>90</b></li>
+  </ul>
+
+  <ul id="resort">
+    <!-- 
+    <li>第一名：北京空气质量：<b>90</b></li>
+    <li>第二名：北京空气质量：<b>90</b></li>
+    <li>第三名：北京空气质量：<b>90</b></li>
+     -->
+
+  </ul>
+
+  <button id="sort-btn" onclick="init()">排序</button>
+
+  <script type="text/javascript">
+
+  /**
+   * getData方法
+   * 读取id为source的列表，获取其中城市名字及城市对应的空气质量
+   * 返回一个数组，格式见函数中示例
+   */
+  var data=new Array();
+
+  /*标签里又有标签时，该如何动态创建标签并将二维数组内容添加进去*/
+  
+  function getData() {
+    var baseElement=document.getElementById("resource");
+    var content=baseElement.querySelectorAll("li");
+    var num=content.querySelectorAll("b");
+    for(var i=0;i<content.length;i++){
+      data[i]=new Array();
+      data[i][0]=content[i];
+      for(var j=0;j<num.length;j++){
+        data[i][j]=num[j];
+      }
+    }
+    return data;
+  }
+
+  /**
+   * sortAqiData
+   * 按空气质量对data进行从小到大的排序
+   * 返回一个排序后的数组
+   */
+  function sortAqiData(data) {
+    data.sort(function(a,b){
+      return b[1]-a[1];
+    });
+  }
+
+  /**
+   * render
+   * 将排好序的城市及空气质量指数，输出显示到id位resort的列表中
+   * 格式见ul中的注释的部分
+   */
+  function render(data) {
+    var result=document.getElementById("resort");
+    for(var j=0;j<data.length;j++){
+      var citylist=document.createElement("li");
+      var citylast=document.createElement("b");
+      var citynum=document.createTextNode(data[j][1]);
+      var cityname=document.createTextNode("第"+(j+1)+"名："+data[j][0]+citynum[j]);
+      citylast.appendChild(citylast);
+      result.appendChild(citylast);
+    }
+  }
+
+  function btnHandle() {
+    var aqiData = getData();
+    aqiData = sortAqiData(aqiData);
+    render(aqiData);
+  }
+
+  function init() {
+
+    /*为点击button绑定事件监听函数，一旦有点击就执行btnHandle函数*/
+    var lastevent=document.getElementById("sort-btn");
+    lastevent.addEventListener('click',function(){
+      btnHandle();
+      },false);
+    }
+
+  init();
+
+</script>
+</body>
+</html>
