@@ -8,7 +8,7 @@
 	<h3>污染城市列表</h3>
 	<ul id="aqi-list">
 	</ul>
-	<script>
+	<script type="text/javascript">
 	var aqiData=[
 	   ["beijing",90],
 	   ["shanghai",50],
@@ -17,24 +17,24 @@
 	   ["chengdu",90],
 	   ["xian",100]
 	];
-	window.onload=function selectcity(){
-		var temparray[]=new Array();
+	(function (){
+		var temparray=new Array();
 		for(var i=0;i<aqiData.length;i++){
 			if(aqiData[i][1]>60){
 				temparray.push(aqiData[i]);
 			}
 		}
+		temparray.sort(function(a,b){
+			return b[1]-a[1]
+		});
+		var element=document.getElementById("aqi-list");
 		for(var j=0;j<temparray.lenth;j++){
-			var citylist=document.createElement("li");
-			var cityname=document.createTextNode(temparray[j]);
-			citylist.appendChild(cityname);
-
-			var element=document.getElementById("aqi-list");
-			element.appendChild(citylist);
-		}
-		
-		
-	}
+			var list=document.createElement("li");
+			var content=document.createTextNode("第"+(i+1)+"名："+temparray[j][0]+"："+temparray[j][1]);
+			list.appendChild(content);
+	        element.appendChild(list);
+		}	
+	})();
 	</script>
 </body>
 </html>
