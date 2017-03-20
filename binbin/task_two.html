@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>javasript task 02</title>
+</head>
+<body>
+	<h3>污染城市列表</h3>
+	<ul id="aqi-list">
+	</ul>
+	<script>
+	var aqiData=[
+	   ["beijing",90],
+	   ["shanghai",50],
+	   ["fuzhou",10],
+	   ["guangzhou",50],
+	   ["chengdu",90],
+	   ["xian",100]
+	];
+	window.onload=function selectcity(){
+		var temparray[]=new Array();
+		for(var i=0;i<aqiData.length;i++){
+			if(aqiData[i][1]>60){
+				temparray.push(aqiData[i]);
+			}
+		}
+		for(var j=0;j<temparray.lenth;j++){
+			var citylist=document.createElement("li");
+			var cityname=document.createTextNode(temparray[j]);
+			citylist.appendChild(cityname);
+
+			var element=document.getElementById("aqi-list");
+			element.appendChild(citylist);
+		}
+		
+		
+	}
+	</script>
+</body>
+</html>
