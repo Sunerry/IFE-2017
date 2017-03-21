@@ -7,8 +7,12 @@
 <body>
 	<h3>污染城市列表</h3>
 	<ul id="aqi-list">
+		<!--
+		<li>第一名：福州（样例），10</li>
+		<li>第二名：福州（样例），10</li>
+		-->
 	</ul>
-	<script type="text/javascript">
+	<script>
 	var aqiData=[
 	   ["beijing",90],
 	   ["shanghai",50],
@@ -25,16 +29,16 @@
 			}
 		}
 		temparray.sort(function(a,b){
-			return b[1]-a[1]
+			return b[1]-a[1];
 		});
 		var element=document.getElementById("aqi-list");
-		for(var j=0;j<temparray.lenth;j++){
+		for(var j=0;j<temparray.length;j++){
 			var list=document.createElement("li");
 			var content=document.createTextNode("第"+(i+1)+"名："+temparray[j][0]+"："+temparray[j][1]);
 			list.appendChild(content);
 	        element.appendChild(list);
 		}	
-	})();
+	}(();
 	</script>
 </body>
 </html>
